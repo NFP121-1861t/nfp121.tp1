@@ -1,5 +1,6 @@
 package question3;
-
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 /**
  * NFP121 TpIntroduction, usage de BlueJ et du "Submitter".
  * 
@@ -44,9 +45,25 @@ public class AuditeurCNAM {
      * @return le login du Cnam simplifié, sans les adaptations dues aux
      *         homonymes...
      */
+
     public String login() {
-        return "";// à compléter
+                
+        String nomSansAccent=removeAccents(this.nom);
+        String nomSansSpetialCar=nomSansAccent.replaceAll("[\\p{S}\\p{P}º]+", "_").replaceAll(" ","_").replaceAll("-","_");
+        String nouveauNom=nomSansSpetialCar.substring(0, Math.min(6, nomSansSpetialCar.length()));
+        
+        String prenomSansAccent=removeAccents(this.prenom);
+        String prenomSansSpetialCar=prenomSansAccent.replaceAll("[\\p{S}\\p{P}º]+", "_").replaceAll(" ","_").replaceAll("-","_");
+        String nouveauprenom=prenomSansSpetialCar.substring(0,1);
+        
+        return (nouveauNom + "_" + nouveauprenom).toLowerCase();
     }
+    
+    /* Enlever accent */
+    public static String removeAccents(String text) {
+    return text == null ? null : Normalizer.normalize(text, Normalizer.Form.NFD)
+            .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        }
 
     /**
      * Lecture du nom de l'auditeur.
@@ -54,7 +71,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return nom;
     }
 
     /**
@@ -63,7 +80,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return prenom;
     }
 
     /**
@@ -72,7 +89,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return matricule;
     }
 
     /**

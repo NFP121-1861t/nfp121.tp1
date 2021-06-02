@@ -19,7 +19,9 @@ public class Picture {
     private Square wall;
     private Square window;
     private Triangle roof;
-    private Circle sun;
+    private Circle sun1;
+    private Circle sun2;
+    private boolean terreEstFixe =true;
 
     /**
      * Constructor for objects of class Picture
@@ -49,12 +51,19 @@ public class Picture {
         roof.moveVertical(70);
         roof.makeVisible();
 
-        sun = new Circle();
-        sun.changeColor("yellow");
-        sun.moveHorizontal(180);
-        sun.moveVertical(-10);
-        sun.changeSize(60);
-        sun.makeVisible();
+        sun1 = new Circle();
+        sun1.changeColor("blue");
+        sun1.moveHorizontal(180);
+        sun1.moveVertical(-10);
+        sun1.changeSize(60);
+        sun1.makeVisible();
+        
+        sun2 = new Circle();
+        sun2.changeColor("yellow");
+        sun2.moveHorizontal(5);
+        sun2.moveVertical(-15);
+        sun2.changeSize(60);
+        sun2.makeVisible();
     }
 
     /**
@@ -66,7 +75,8 @@ public class Picture {
             wall.changeColor("black");
             window.changeColor("white");
             roof.changeColor("black");
-            sun.changeColor("black");
+            sun1.changeColor("black");
+            sun2.changeColor("black");
         }
     }
 
@@ -79,8 +89,19 @@ public class Picture {
             wall.changeColor("red");
             window.changeColor("black");
             roof.changeColor("green");
-            sun.changeColor("yellow");
+            sun1.changeColor("blue");
+            sun2.changeColor("yellow");
         }
     }
-
+     /**
+     * Permer au soleil bleu de se coucher
+     */
+    
+    public void coucherSoleil(){
+        if(terreEstFixe)
+        {
+            sun1.slowMoveVertical(250);
+        }
+         
+        }
 }
